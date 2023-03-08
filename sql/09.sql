@@ -16,3 +16,11 @@
  * 1. <https://www.postgresqltutorial.com/postgresql-grouping-sets/>
  * 2. <https://www.postgresqltutorial.com/postgresql-cube/>
  */
+
+select
+extract(YEAR from rental_date) as year,
+extract(MONTH from rental_date) as month,
+extract(DAY from rental_date) as day,
+count(*) from rental
+group by rollup(year, month, day)
+order by 1, 2, 3;
